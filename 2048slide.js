@@ -40,7 +40,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
  * Render the board on the page.
  */
 function renderBoard() {
-    // Implementation for rendering the board
+    const gameContainer = document.getElementById('game-container');
+    gameContainer.innerHTML = ''; // Clear the previous state
+
+    const boardElement = document.createElement('div');
+    boardElement.className = 'board';
+
+    for (let i = 0; i < GAME_SIZE; i++) {
+        const rowElement = document.createElement('div');
+        rowElement.className = 'row';
+
+        for (let j = 0; j < GAME_SIZE; j++) {
+            const tileElement = document.createElement('div');
+            tileElement.className = 'tile';
+            tileElement.textContent = board[i][j] === 0 ? '' : board[i][j];
+            rowElement.appendChild(tileElement);
+        }
+
+        boardElement.appendChild(rowElement);
+    }
+
+    gameContainer.appendChild(boardElement);
 }
 
 /**
