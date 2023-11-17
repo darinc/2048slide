@@ -30,4 +30,27 @@
     border: 3px solid #FFA500; /* Example: orange border */
 }
 
+/* Styles for tile values */
+.tile.value-2 { background-color: #eee4da; }
+.tile.value-4 { background-color: #ede0c8; }
+.tile.value-8 { background-color: #f2b179; color: #f9f6f2; }
+.tile.value-16 { background-color: #f59563; color: #f9f6f2; }
+.tile.value-32 { background-color: #f67c5f; color: #f9f6f2; }
+.tile.value-64 { background-color: #f65e3b; color: #f9f6f2; }
+.tile.value-128 { background-color: #edcf72; color: #f9f6f2; }
+.tile.value-256 { background-color: #edcc61; color: #f9f6f2; }
+.tile.value-512 { background-color: #edc850; color: #f9f6f2; }
+.tile.value-1024 { background-color: #edc53f; color: #f9f6f2; }
+.tile.value-2048 { background-color: #edc22e; color: #f9f6f2; }
+
+/* Ensure text is centered and visible on all tiles */
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #776e65; /* Default text color for tiles */
+}
+
 /* Additional styles for the sliding window and tiles */
