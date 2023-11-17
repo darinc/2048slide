@@ -33,9 +33,8 @@ function initialTiles() {
  * Place a random number (2 or 4) in an empty spot on the board.
  */
 function placeRandomNumber() {
-    for (let i = 0; i < 2; i++) { // Place two tiles
-        placeTile(Math.random() < 0.9 ? 2 : 4);
-    }
+    // Place one tile
+    placeTile(Math.random() < 0.9 ? 2 : 4);
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
