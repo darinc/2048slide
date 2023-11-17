@@ -1,5 +1,5 @@
 // Constants for the game size
-const GAME_SIZE = 16; // 16x16 for the larger field
+const GAME_SIZE = 8; // 16x16 for the larger field
 const WINDOW_SIZE = 4; // 4x4 for the sliding window
 
 // Game state
@@ -62,14 +62,16 @@ function renderBoard() {
         for (let j = 0; j < GAME_SIZE; j++) {
             const tileElement = document.createElement('div');
             tileElement.className = 'tile';
-            // Check if the current tile is within the sliding window
-            if (i >= windowPosition.y && i < windowPosition.y + WINDOW_SIZE &&
-                j >= windowPosition.x && j < windowPosition.x + WINDOW_SIZE) {
-                tileElement.classList.add('sliding-window');
-            }
             let value = board[i][j];
             tileElement.textContent = value === 0 ? '' : value;
             tileElement.className = 'tile' + (value ? ' value-' + value : '');
+            // Check if the current tile is within the sliding window
+            if (i >= windowPosition.x && i < windowPosition.x + WINDOW_SIZE &&
+                j >= windowPosition.y && j < windowPosition.y + WINDOW_SIZE) {
+                tileElement.classList.add('sliding-window');
+                //tileElement.className = 'tile sliding';
+                //console.log("inside sliding window", windowPosition.x, windowPosition.y);
+            }
             rowElement.appendChild(tileElement);
         }
 

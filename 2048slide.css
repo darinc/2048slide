@@ -12,12 +12,13 @@
 .board {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
-    gap: 4px;
+    gap: 0px;
 }
 
 .tile {
     width: 50px;
     height: 50px;
+    border: 2px solid #faf9f8;
     background-color: #e0e0e0;
     display: flex;
     justify-content: center;
@@ -29,6 +30,7 @@
 /* No changes needed if the above CSS rule is correct */
 
 /* Styles for tile values */
+.tile.sliding { background-color: #c16e2f; }
 .tile.value-2 { background-color: #eee4da; }
 .tile.value-4 { background-color: #ede0c8; }
 .tile.value-8 { background-color: #f2b179; color: #f9f6f2; }
@@ -53,5 +55,6 @@
 
 /* Additional styles for the sliding window and tiles */
 .sliding-window {
-    border: 2px solid #000000; /* Black border for visibility */
+    border: 2px solid #dbcabd; /* border for visibility */
+    background-color: #a89cf0;
 }
