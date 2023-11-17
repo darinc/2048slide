@@ -150,20 +150,21 @@ function moveTiles(direction) {
         // Check if the current position is within the sliding window
         if (x >= windowPosition.x && x < windowPosition.x + WINDOW_SIZE &&
             y >= windowPosition.y && y < windowPosition.y + WINDOW_SIZE) {
-        if (board[x][y] !== 0) {
-            let {newX, newY, merged} = findFarthestPosition(x, y, vector);
-            if (merged) {
-                // Merge the tiles
-                board[newX][newY] *= 2;
-                board[x][y] = 0;
-                moved = true;
-            } else if (newX !== x || newY !== y) {
-                // Move the tile
-                board[newX][newY] = board[x][y];
-                board[x][y] = 0;
-                moved = true;
+              if (board[x][y] !== 0) {
+                  let {newX, newY, merged} = findFarthestPosition(x, y, vector);
+                  if (merged) {
+                      // Merge the tiles
+                      board[newX][newY] *= 2;
+                      board[x][y] = 0;
+                      moved = true;
+                  } else if (newX !== x || newY !== y) {
+                      // Move the tile
+                      board[newX][newY] = board[x][y];
+                      board[x][y] = 0;
+                      moved = true;
+                  }
+              }
             }
-        }
     });
 
     // Check if any tiles moved and place four new random numbers if so
