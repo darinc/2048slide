@@ -99,16 +99,16 @@ function moveWindow(direction) {
     const maxPosition = GAME_SIZE - WINDOW_SIZE;
     switch (direction) {
         case 'w': // up
-            windowPosition.x = Math.max(0, windowPosition.x - 1);
-            break;
-        case 'a': // left
             windowPosition.y = Math.max(0, windowPosition.y - 1);
             break;
+        case 'a': // left
+            windowPosition.x = Math.max(0, windowPosition.x - 1);
+            break;
         case 's': // down
-            windowPosition.x = Math.min(maxPosition, windowPosition.x + 1);
+            windowPosition.y = Math.min(maxPosition, windowPosition.y + 1);
             break;
         case 'd': // right
-            windowPosition.y = Math.min(maxPosition, windowPosition.y + 1);
+            windowPosition.x = Math.min(maxPosition, windowPosition.x + 1);
             break;
     }
     renderBoard(); // Update the board to reflect the new window position
