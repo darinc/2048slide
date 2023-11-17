@@ -108,6 +108,9 @@ function handleKeyPress(event) {
  */
 function moveWindow(direction) {
     const maxPosition = GAME_SIZE - WINDOW_SIZE;
+    let moved = false; // Flag to check if the window moved
+    let previousX = windowPosition.x;
+    let previousY = windowPosition.y;
     switch (direction) {
         case 'w': // up
             windowPosition.y = Math.max(0, windowPosition.y - 1);
@@ -121,6 +124,10 @@ function moveWindow(direction) {
         case 'd': // right
             windowPosition.x = Math.min(maxPosition, windowPosition.x + 1);
             break;
+    }
+    moved = (windowPosition.x !== previousX || windowPosition.y !== previousY);
+    if (moved) {
+        placeRandomNumber(); // Place one new tile if the window moved
     }
     console.log(`Sliding window moved to: x=${windowPosition.x}, y=${windowPosition.y}`);
     renderBoard(); // Update the board to reflect the new window position
