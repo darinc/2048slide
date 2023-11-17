@@ -26,9 +26,7 @@
     font-weight: bold;
 }
 
-.sliding-window {
-    border: 3px solid #FFA500; /* Example: orange border */
-}
+/* No changes needed if the above CSS rule is correct */
 
 /* Styles for tile values */
 .tile.value-2 { background-color: #eee4da; }

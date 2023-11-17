@@ -62,8 +62,8 @@ function renderBoard() {
             const tileElement = document.createElement('div');
             tileElement.className = 'tile';
             // Check if the current tile is within the sliding window
-            if (i >= windowPosition.x && i < windowPosition.x + WINDOW_SIZE &&
-                j >= windowPosition.y && j < windowPosition.y + WINDOW_SIZE) {
+            if (i >= windowPosition.y && i < windowPosition.y + WINDOW_SIZE &&
+                j >= windowPosition.x && j < windowPosition.x + WINDOW_SIZE) {
                 tileElement.classList.add('sliding-window');
             }
             let value = board[i][j];
