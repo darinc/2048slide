@@ -121,6 +121,7 @@ function moveWindow(direction) {
             windowPosition.x = Math.min(maxPosition, windowPosition.x + 1);
             break;
     }
+    console.log(`Sliding window moved to: x=${windowPosition.x}, y=${windowPosition.y}`);
     renderBoard(); // Update the board to reflect the new window position
 }
 

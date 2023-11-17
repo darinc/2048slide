@@ -52,3 +52,6 @@
 }
 
 /* Additional styles for the sliding window and tiles */
+.sliding-window {
+    border: 2px solid #000000; /* Black border for visibility */
+}
