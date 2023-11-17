@@ -119,5 +119,36 @@ function moveWindow(direction) {
  * @param {string} direction - The key representing the direction
  */
 function moveTiles(direction) {
-    // Implementation for moving the tiles within the sliding window
+    // Convert direction to vector (dx, dy)
+    let vector = getDirectionVector(direction);
+    let moved = false;
+
+    // Prepare the board for tile movement
+    prepareBoardForMovement(vector);
+
+    // Traverse the board in the correct direction and move tiles
+    traverseBoard(vector, (x, y) => {
+        if (board[x][y] !== 0) {
+            let {newX, newY, merged} = findFarthestPosition(x, y, vector);
+            if (merged) {
+                // Merge the tiles
+                board[newX][newY] *= 2;
+                board[x][y] = 0;
+                moved = true;
+            } else if (newX !== x || newY !== y) {
+                // Move the tile
+                board[newX][newY] = board[x][y];
+                board[x][y] = 0;
+                moved = true;
+            }
+        }
+    });
+
+    // Check if any tiles moved and place a new random number if so
+    if (moved) {
+        placeRandomNumber();
+        renderBoard();
+    }
 }
+
+// Additional helper functions will be implemented here
