@@ -145,8 +145,11 @@ function moveTiles(direction) {
     // Prepare the board for tile movement
     prepareBoardForMovement(vector);
 
-    // Traverse the board in the correct direction and move tiles
+    // Traverse only within the sliding window and move tiles
     traverseBoard(vector, (x, y) => {
+        // Check if the current position is within the sliding window
+        if (x >= windowPosition.x && x < windowPosition.x + WINDOW_SIZE &&
+            y >= windowPosition.y && y < windowPosition.y + WINDOW_SIZE) {
         if (board[x][y] !== 0) {
             let {newX, newY, merged} = findFarthestPosition(x, y, vector);
             if (merged) {
