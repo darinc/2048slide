@@ -33,7 +33,9 @@ function initialTiles() {
  * Place a random number (2 or 4) in an empty spot on the board.
  */
 function placeRandomNumber() {
-    // Implementation for placing a random number on the board
+    for (let i = 0; i < 4; i++) { // Place four tiles
+        placeTile(Math.random() < 0.9 ? 2 : 4);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -155,9 +157,9 @@ function moveTiles(direction) {
         }
     });
 
-    // Check if any tiles moved and place a new random number if so
+    // Check if any tiles moved and place four new random numbers if so
     if (moved) {
-        placeRandomNumber();
+        placeRandomNumber(); // This will now place four new tiles
         renderBoard();
     }
 }
