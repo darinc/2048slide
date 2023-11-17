@@ -171,7 +171,12 @@ function getDirectionVector(direction) {
  * @param {{dx: number, dy: number}} vector - The vector representing the direction of movement
  */
 function prepareBoardForMovement(vector) {
-    // Logic to prepare the board for movement will be added here
+    // Set up a merged flag for each cell to prevent multiple merges in one move
+    for (let i = 0; i < GAME_SIZE; i++) {
+        for (let j = 0; j < GAME_SIZE; j++) {
+            board[i][j].merged = false;
+        }
+    }
 }
 
 /**
@@ -180,7 +185,16 @@ function prepareBoardForMovement(vector) {
  * @param {function} callback - The callback function to apply to each tile
  */
 function traverseBoard(vector, callback) {
-    // Logic to traverse the board in the correct order will be added here
+    const startX = vector.dx === 1 ? GAME_SIZE - 1 : 0;
+    const startY = vector.dy === 1 ? GAME_SIZE - 1 : 0;
+    const deltaX = vector.dx === 0 ? 1 : -1 * vector.dx;
+    const deltaY = vector.dy === 0 ? 1 : -1 * vector.dy;
+
+    for (let x = startX; (vector.dx === 1 ? x >= 0 : x < GAME_SIZE); x += deltaX) {
+        for (let y = startY; (vector.dy === 1 ? y >= 0 : y < GAME_SIZE); y += deltaY) {
+            callback(x, y);
+        }
+    }
 }
 
 /**
@@ -191,8 +205,28 @@ function traverseBoard(vector, callback) {
  * @returns {{newX: number, newY: number, merged: boolean}} The new position and merge flag
  */
 function findFarthestPosition(x, y, vector) {
-    // Logic to find the farthest position will be added here
-    return { newX: x, newY: y, merged: false };
+    let previous;
+
+    // Keep moving the position until we hit an obstacle
+    do {
+        previous = { x: x, y: y };
+        x += vector.dx;
+        y += vector.dy;
+    } while (x >= 0 && x < GAME_SIZE && y >= 0 && y < GAME_SIZE && board[x][y] === 0);
+
+    let merged = false;
+    // Check for a possible merge
+    if (x >= 0 && x < GAME_SIZE && y >= 0 && y < GAME_SIZE && board[x][y] === board[previous.x][previous.y] && !board[x][y].merged) {
+        merged = true;
+        // Mark the tile as merged
+        board[x][y].merged = true;
+    } else {
+        // If no merge, we step back to the previous position
+        x = previous.x;
+        y = previous.y;
+    }
+
+    return { newX: x, newY: y, merged: merged };
 }
 
 // Additional helper functions will be implemented here
