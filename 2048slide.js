@@ -16,9 +16,17 @@ function initializeBoard() {
             board[i][j] = 0;
         }
     }
-    // Place the initial two numbers on the board
-    placeRandomNumber();
-    placeRandomNumber();
+    // Place the initial set of tiles on the board
+    initialTiles();
+}
+
+/**
+ * Place an initial set of tiles on the board.
+ */
+function initialTiles() {
+    placeTile(2);
+    placeTile(2);
+    // You can add more tiles or logic for random values here if desired
 }
 
 /**
@@ -58,7 +66,9 @@ function renderBoard() {
                 j >= windowPosition.y && j < windowPosition.y + WINDOW_SIZE) {
                 tileElement.classList.add('sliding-window');
             }
-            tileElement.textContent = board[i][j] === 0 ? '' : board[i][j];
+            let value = board[i][j];
+            tileElement.textContent = value === 0 ? '' : value;
+            tileElement.className = 'tile' + (value ? ' value-' + value : '');
             rowElement.appendChild(tileElement);
         }
 
@@ -229,4 +239,22 @@ function findFarthestPosition(x, y, vector) {
     return { newX: x, newY: y, merged: merged };
 }
 
+/**
+ * Place a tile with a value on the board at a random empty position.
+ * @param {number} value - The value of the tile to place (typically 2 or 4).
+ */
+function placeTile(value) {
+    let emptyPositions = [];
+    for (let i = 0; i < GAME_SIZE; i++) {
+        for (let j = 0; j < GAME_SIZE; j++) {
+            if (board[i][j] === 0) {
+                emptyPositions.push({ x: i, y: j });
+            }
+        }
+    }
+    if (emptyPositions.length > 0) {
+        let randomPosition = emptyPositions[Math.floor(Math.random() * emptyPositions.length)];
+        board[randomPosition.x][randomPosition.y] = value;
+    }
+}
 // Additional helper functions will be implemented here
