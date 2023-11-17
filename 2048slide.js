@@ -151,4 +151,48 @@ function moveTiles(direction) {
     }
 }
 
+/**
+ * Convert a direction from key input to a vector.
+ * @param {string} direction - The key representing the direction
+ * @returns {{dx: number, dy: number}} The vector representing the direction
+ */
+function getDirectionVector(direction) {
+    const map = {
+        'ArrowUp': {dx: 0, dy: -1},
+        'ArrowDown': {dx: 0, dy: 1},
+        'ArrowLeft': {dx: -1, dy: 0},
+        'ArrowRight': {dx: 1, dy: 0}
+    };
+    return map[direction] || {dx: 0, dy: 0};
+}
+
+/**
+ * Prepare the board for tile movement.
+ * @param {{dx: number, dy: number}} vector - The vector representing the direction of movement
+ */
+function prepareBoardForMovement(vector) {
+    // Logic to prepare the board for movement will be added here
+}
+
+/**
+ * Traverse the board in a specific order and apply a callback to each tile.
+ * @param {{dx: number, dy: number}} vector - The vector representing the direction of movement
+ * @param {function} callback - The callback function to apply to each tile
+ */
+function traverseBoard(vector, callback) {
+    // Logic to traverse the board in the correct order will be added here
+}
+
+/**
+ * Find the farthest position a tile can move to.
+ * @param {number} x - The x-coordinate of the tile
+ * @param {number} y - The y-coordinate of the tile
+ * @param {{dx: number, dy: number}} vector - The vector representing the direction of movement
+ * @returns {{newX: number, newY: number, merged: boolean}} The new position and merge flag
+ */
+function findFarthestPosition(x, y, vector) {
+    // Logic to find the farthest position will be added here
+    return { newX: x, newY: y, merged: false };
+}
+
 // Additional helper functions will be implemented here
