@@ -26,4 +26,8 @@
     font-weight: bold;
 }
 
+.sliding-window {
+    border: 3px solid #FFA500; /* Example: orange border */
+}
+
 /* Additional styles for the sliding window and tiles */

@@ -53,6 +53,11 @@ function renderBoard() {
         for (let j = 0; j < GAME_SIZE; j++) {
             const tileElement = document.createElement('div');
             tileElement.className = 'tile';
+            // Check if the current tile is within the sliding window
+            if (i >= windowPosition.x && i < windowPosition.x + WINDOW_SIZE &&
+                j >= windowPosition.y && j < windowPosition.y + WINDOW_SIZE) {
+                tileElement.classList.add('sliding-window');
+            }
             tileElement.textContent = board[i][j] === 0 ? '' : board[i][j];
             rowElement.appendChild(tileElement);
         }
