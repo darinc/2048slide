@@ -147,11 +147,10 @@ function moveTiles(direction) {
     // Prepare the board for tile movement
     prepareBoardForMovement(vector);
 
-    // Traverse only within the sliding window and move tiles
+    // Traverse the board and move tiles only within the sliding window
     traverseBoard(vector, (x, y) => {
-        // Check if the current position is within the sliding window
-        if (x >= windowPosition.x && x < windowPosition.x + WINDOW_SIZE &&
-            y >= windowPosition.y && y < windowPosition.y + WINDOW_SIZE) {
+        // Check if the current position is within the bounds of the sliding window
+        if (isWithinSlidingWindow(x, y)) {
               if (board[x][y] !== 0) {
                   let {newX, newY, merged} = findFarthestPosition(x, y, vector);
                   if (merged) {
@@ -272,4 +271,10 @@ function placeTile(value) {
         board[randomPosition.x][randomPosition.y] = value;
     }
 }
-// Additional helper functions will be implemented here
+// Helper function to check if a position is within the sliding window
+function isWithinSlidingWindow(x, y) {
+    return x >= windowPosition.x && x < windowPosition.x + WINDOW_SIZE &&
+           y >= windowPosition.y && y < windowPosition.y + WINDOW_SIZE;
+}
+
+// Additional helper functions can be implemented here
