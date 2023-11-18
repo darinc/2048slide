@@ -69,8 +69,6 @@ function renderBoard() {
             if (i >= windowPosition.x && i < windowPosition.x + WINDOW_SIZE &&
                 j >= windowPosition.y && j < windowPosition.y + WINDOW_SIZE) {
                 tileElement.classList.add('sliding-window');
-                //tileElement.className = 'tile sliding';
-                //console.log("inside sliding window", windowPosition.x, windowPosition.y);
             }
             rowElement.appendChild(tileElement);
         }
@@ -131,7 +129,7 @@ function moveWindow(direction) {
     if (moved) {
         placeRandomNumber(); // Place one new tile if the window moved
     }
-    console.log(`Sliding window moved to: x=${windowPosition.x}, y=${windowPosition.y}`);
+    //console.log(`Sliding window moved to: x=${windowPosition.x}, y=${windowPosition.y}`);
     renderBoard(); // Update the board to reflect the new window position
 }
 
