@@ -231,21 +231,21 @@ function findFarthestPosition(x, y, vector) {
     let windowSize = WINDOW_SIZE;
     let previous;
 
-    // Keep moving the position until we hit an obstacle or the sliding window border
+    // Keep moving the position until we hit an obstacle or the edge of the board
     do {
         previous = { x: x, y: y };
         x += vector.dx;
         y += vector.dy;
-    } while (isWithinSlidingWindow(x, y, windowPos, windowSize) && board[x][y] === 0);
+    } while (x >= 0 && x < GAME_SIZE && y >= 0 && y < GAME_SIZE && board[x][y] === 0);
 
     let merged = false;
-    // Check for a possible merge
-    if (x >= 0 && x < GAME_SIZE && y >= 0 && y < GAME_SIZE && board[x][y] === board[previous.x][previous.y] && !board[x][y].merged) {
+    // Check for a possible merge within the sliding window
+    if (isWithinSlidingWindow(x, y, windowPos, windowSize) && board[x][y] && board[previous.x][previous.y] && board[x][y].value === board[previous.x][previous.y].value && !board[x][y].merged) {
         merged = true;
         // Mark the tile as merged
         board[x][y].merged = true;
     } else {
-        // If no merge, we step back to the previous position
+        // If no merge or out of bounds, we step back to the previous position
         x = previous.x;
         y = previous.y;
     }
