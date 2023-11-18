@@ -226,17 +226,15 @@ function traverseBoard(vector, callback) {
  * @param {{dx: number, dy: number}} vector - The vector representing the direction of movement
  * @returns {{newX: number, newY: number, merged: boolean}} The new position and merge flag
  */
-function findFarthestPosition(x, y, vector) {
-    let windowPos = windowPosition;
-    let windowSize = WINDOW_SIZE;
+function findFarthestPosition(x, y, vector, windowPos, windowSize) {
     let previous;
 
-    // Keep moving the position until we hit an obstacle or the edge of the board
+    // Keep moving the position until we hit an obstacle, the edge of the board, or the border of the sliding window
     do {
         previous = { x: x, y: y };
         x += vector.dx;
         y += vector.dy;
-    } while (x >= 0 && x < GAME_SIZE && y >= 0 && y < GAME_SIZE && board[x][y] === 0);
+    } while (x >= windowPos.x && x < windowPos.x + windowSize && y >= windowPos.y && y < windowPos.y + windowSize && board[x][y] === 0);
 
     let merged = false;
     // Check for a possible merge within the sliding window
