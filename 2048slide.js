@@ -1,5 +1,5 @@
 // Constants for the game size
-const GAME_SIZE = 8; // 16x16 for the larger field
+const GAME_SIZE = 7; // 16x16 for the larger field
 const WINDOW_SIZE = 4; // 4x4 for the sliding window
 
 // Game state
@@ -89,6 +89,10 @@ function handleKeyPress(event) {
         case 'a':
         case 's':
         case 'd':
+        case 'W':
+        case 'A':
+        case 'S':
+        case 'D':
             // Handle sliding window movement
             moveWindow(event.key);
             break;
@@ -124,11 +128,25 @@ function moveWindow(direction) {
         case 'd': // right
             windowPosition.x = Math.min(maxPosition, windowPosition.x + 1);
             break;
+        case 'W': // up
+            windowPosition.y = 0;
+            break;
+        case 'A': // left
+            windowPosition.x = 0;
+            break;
+        case 'S': // down
+            windowPosition.y = GAME_SIZE-WINDOW_SIZE;
+            break;
+        case 'D': // right
+            windowPosition.x = GAME_SIZE-WINDOW_SIZE;
+            break;
     }
     moved = (windowPosition.x !== previousX || windowPosition.y !== previousY);
+    /*
     if (moved) {
         placeRandomNumber(); // Place one new tile if the window moved
     }
+    */
     //console.log(`Sliding window moved to: x=${windowPosition.x}, y=${windowPosition.y}`);
     renderBoard(); // Update the board to reflect the new window position
 }
@@ -226,8 +244,13 @@ function traverseBoard(vector, callback) {
  * @param {{dx: number, dy: number}} vector - The vector representing the direction of movement
  * @returns {{newX: number, newY: number, merged: boolean}} The new position and merge flag
  */
-function findFarthestPosition(x, y, vector, windowPos, windowSize) {
+function findFarthestPosition(x, y, vector) {
     let previous;
+
+    let windowPos = windowPosition;
+    let windowSize = WINDOW_SIZE;
+    //return x >= windowPos.x && x < windowPos.x + windowSize &&
+    //       y >= windowPos.y && y < windowPos.y + windowSize;
 
     // Keep moving the position until we hit an obstacle, the edge of the board, or the border of the sliding window
     do {
@@ -238,7 +261,10 @@ function findFarthestPosition(x, y, vector, windowPos, windowSize) {
 
     let merged = false;
     // Check for a possible merge within the sliding window
-    if (isWithinSlidingWindow(x, y, windowPos, windowSize) && board[x][y] && board[previous.x][previous.y] && board[x][y].value === board[previous.x][previous.y].value && !board[x][y].merged) {
+    if (isWithinSlidingWindow(x, y, windowPos, windowSize)
+       && board[x][y] && board[previous.x][previous.y]
+       && board[x][y] === board[previous.x][previous.y]
+       && !board[x][y].merged) {
         merged = true;
         // Mark the tile as merged
         board[x][y].merged = true;
