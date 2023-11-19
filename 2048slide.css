@@ -43,13 +43,13 @@
 .tile.value-512 { background-color: #edc850; color: #f9f6f2; }
 .tile.value-1024 { background-color: #edc53f; color: #f9f6f2; }
 .tile.value-2048 { background-color: #edc22e; color: #f9f6f2; }
-.tile.value-4096 { background-color: #31a354; color: #f9f6f2; } /* Darker green */
-.tile.value-8192 { background-color: #63c583; color: #f9f6f2; } /* Medium green */
-.tile.value-16384 { background-color: #85d79b; color: #f9f6f2; } /* Lighter green */
-.tile.value-32768 { background-color: #a8e8b4; color: #f9f6f2; } /* Light green */
-.tile.value-65536 { background-color: #cbf9cc; color: #f9f6f2; } /* Very light green */
-.tile.value-131072 { background-color: #efffe5; color: #f9f6f2; } /* Almost white green */
-.tile.value-262144 { background-color: #ffffff; color: #f9f6f2; } /* White to indicate max value */
+.tile.value-4096 { background-color: #3c3a32; color: #f9f6f2; } /* Starting color */
+.tile.value-8192 { background-color: #4e4b40; color: #f9f6f2; } /* Slightly lighter */
+.tile.value-16384 { background-color: #5f5c4e; color: #f9f6f2; } /* Lighter still */
+.tile.value-32768 { background-color: #71705d; color: #f9f6f2; } /* Transitioning to green */
+.tile.value-65536 { background-color: #82836b; color: #f9f6f2; } /* More green */
+.tile.value-131072 { background-color: #94967a; color: #f9f6f2; } /* Even more green */
+.tile.value-262144 { background-color: #efffe5; color: #f9f6f2; } /* Ending color */
 
 /* Ensure text is centered and visible on all tiles */
 .tile {
