@@ -43,6 +43,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Event listeners for keypresses (arrow keys and WASD)
     document.addEventListener('keydown', handleKeyPress);
+
+    // Event listener for the New Game button
+    document.getElementById('new-game-button').addEventListener('click', () => {
+        initializeBoard(); // Reset the game state
+        renderBoard(); // Render the new board
+    });
 });
 
 /**
